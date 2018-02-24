@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
         TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey);
     }
     if(task_code == "OtherTokenTransfer"){
-        TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress);
+        OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress);
     }
     if(task_code == "EtherTransfer"){
         EtherTransfer(res,ToAddress,NoEther,FromAddress,PrivateKey);
