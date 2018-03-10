@@ -180,7 +180,8 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
-    web3.eth.defaultAccount = FromAddress;
+	 console.log(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+    /* web3.eth.defaultAccount = FromAddress;
 	 var abi = stake;
 	if(Tcode == "stake"){
 		abi = stake;
@@ -220,6 +221,6 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
         else
             console.log(err);
         }
-    );
+    ); */
 }
 module.exports = app;
