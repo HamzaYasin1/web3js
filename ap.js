@@ -180,49 +180,6 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
- console.log(ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
-     web3.eth.defaultAccount = FromAddress;
-	 var abi = stake;
-	if(Tcode == "stake"){
-		abi = stake;
-    }
-	if(Tcode == "bco"){
-       abi =  bco;
-    }
-    var abiArray = abi;
-	console.log(abiArray);//abi
-	
-    var OtherContractAddress = OtherContractAddress;
-    var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
-    var count = web3.eth.getTransactionCount(web3.eth.defaultAccount);
-    var data = tokenContract.transfer.getData(ToAddress, NoToken);
-    var gasPrice = web3.eth.gasPrice;
-    var gasLimit = 90000;
-    var rawTransaction = {
-        "from": FromAddress,
-        "nonce": web3.toHex(count),
-        "gasPrice": web3.toHex(gasPrice),
-        "gasLimit": web3.toHex(gasLimit),
-        "to": OtherContractAddress,
-        "data": data,
-        "chainId": 0x03
-    };
-    var privKey = new Buffer(PrivateKey, 'hex');
-    var tx = new Tx(rawTransaction);
-    
-
-    tx.sign(privKey);
-    var serializedTx = tx.serialize();
-
-    web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
-        if (!err){
-            console.log(hash);
-            res.contentType('application/json');
-            res.end(JSON.stringify(hash));
-        }
-        else
-            console.log(err);
-        }
-    ); 
+ 
 }
 module.exports = app;
