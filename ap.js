@@ -8,6 +8,7 @@ var OtherContractAddress = '';
 var PrivateKey = '';
 var NoToken = '';
 var NoEther = '';
+var Tcode = '';
 //This module standard library for Ethereum Network.
 const Web3 = require("web3");
 const web3 = new Web3();
