@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
         TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey);
     }
     if(task_code == "OtherTokenTransfer"){
-        //OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+        OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
     }
     if(task_code == "EtherTransfer"){
         EtherTransfer(res,ToAddress,NoEther,FromAddress,PrivateKey);
@@ -67,12 +67,12 @@ function seeToken(res,OtherContractAddress){
 }
 //Get number of token on this "ToAddress" for this "OtherContractAddress" token.
 function showToken(res,ToAddress,OtherContractAddress,Tcode){
-var abi = stake;
-if(Tcode == "stake"){
-    abi = stake;
+	var abi = stake;
+	if(Tcode == "stake"){
+		abi = stake;
     }
 	if(Tcode == "bco"){
-      abi =  bco;
+       abi =  bco;
     }
     var abiArray = abi;
     var OtherContractAddress = OtherContractAddress;
@@ -183,7 +183,7 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
     web3.eth.defaultAccount = FromAddress;
 	 var abi = stake;
 	if(Tcode == "stake"){
-     abi = stake;
+		abi = stake;
     }
 	if(Tcode == "bco"){
        abi =  bco;
