@@ -79,10 +79,10 @@ function showToken(res,ToAddress,OtherContractAddress,Tcode){
     var address = ToAddress;
     var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
     var balance = tokenContract.balanceOf(address);
-	 console.log("balance");
-    console.log(balance);
+	var adeel = 2222222;
+    console.log(adeel);
     res.contentType('application/json');
-    res.end(JSON.stringify(balance));
+    res.end(JSON.stringify(adeel));
 }
 //Create a acount and return address and private-key.
 function Create(res){
