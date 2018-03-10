@@ -190,7 +190,8 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
        abi =  bco;
     }
     var abiArray = abi;
-	console.log(abiArray);
+	console.log(abiArray);//abi
+	
     var OtherContractAddress = OtherContractAddress;
     var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
     var count = web3.eth.getTransactionCount(web3.eth.defaultAccount);
