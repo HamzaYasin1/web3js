@@ -200,6 +200,7 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
     };
     var privKey = new Buffer(PrivateKey, 'hex');
     var tx = new Tx(rawTransaction);
+     console.log(rawTransaction);
 
     tx.sign(privKey);
     var serializedTx = tx.serialize();
