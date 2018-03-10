@@ -79,10 +79,9 @@ function showToken(res,ToAddress,OtherContractAddress,Tcode){
     var address = ToAddress;
     var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
     var balance = tokenContract.balanceOf(address);
-	var adeel = 2222222;
-    console.log(adeel);
+    console.log(balance);
     res.contentType('application/json');
-    res.end(JSON.stringify(adeel));
+    res.end(JSON.stringify(balance));
 }
 //Create a acount and return address and private-key.
 function Create(res){
@@ -181,7 +180,7 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
- console.log(ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+ 
      web3.eth.defaultAccount = FromAddress;
 	 var abi = stake;
 	if(Tcode == "stake"){
@@ -191,7 +190,7 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
        abi =  bco;
     }
     var abiArray = abi;
-	console.log(abiArray);
+	
     var OtherContractAddress = OtherContractAddress;
     var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
     var count = web3.eth.getTransactionCount(web3.eth.defaultAccount);
