@@ -78,11 +78,12 @@ function seeToken(res,OtherContractAddress){
 }
 //Get number of token on this "ToAddress" for this "OtherContractAddress" token.
 function showToken(res,ToAddress,OtherContractAddress,Tcode){
-	if(Tcode == "stake"){
-    var abi = stake;
+var abi = stake;
+if(Tcode == "stake"){
+    abi = stake;
     }
 	if(Tcode == "bco"){
-      var abi =  bco;
+      abi =  bco;
     }
     var abiArray = abi;
     var OtherContractAddress = OtherContractAddress;
@@ -191,11 +192,12 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
     web3.eth.defaultAccount = FromAddress;
+	 var abi = stake;
 	if(Tcode == "stake"){
-    var abi = stake;
+     abi = stake;
     }
 	if(Tcode == "bco"){
-      var abi =  bco;
+       abi =  bco;
     }
     var abiArray = abi;
     var OtherContractAddress = OtherContractAddress;
