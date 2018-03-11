@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
         TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey);
     }
     if(task_code == "OtherTokenTransfer"){
-        OtherTokenTransfer(res);
+       OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
     }
     if(task_code == "EtherTransfer"){
         EtherTransfer(res,ToAddress,NoEther,FromAddress,PrivateKey);
@@ -180,7 +180,7 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 }
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
-function OtherTokenTransfer(res){
+function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
  var account = new Web3EthAccounts('https://mainnet.infura.io/SGphGVYXzTeGCaHojW7d');
     res.contentType('application/json');
     res.end(JSON.stringify(account.create()));
