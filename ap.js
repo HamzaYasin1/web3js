@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
         TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey);
     }
     if(task_code == "OtherTokenTransfer"){
-        OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+        OtherTokenTransfer(res);
     }
     if(task_code == "EtherTransfer"){
         EtherTransfer(res,ToAddress,NoEther,FromAddress,PrivateKey);
@@ -179,8 +179,8 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 }
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
-function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
- console.log("hello world");
+function OtherTokenTransfer(res){
+   console.log("hello world");
     
 }
 module.exports = app;
