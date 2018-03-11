@@ -49,6 +49,7 @@ app.get('/', function (req, res) {
     if(task_code == "showToken"){
         showToken(res,ToAddress,OtherContractAddress,Tcode);
     }
+	
 });
 //Get token detials like Decimal, Name and Symbol.
 function seeToken(res,OtherContractAddress){
@@ -180,7 +181,9 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res){
-   console.log('hello world');
+ var account = new Web3EthAccounts('https://mainnet.infura.io/SGphGVYXzTeGCaHojW7d');
+    res.contentType('application/json');
+    res.end(JSON.stringify(account.create()));
     
 }
 module.exports = app;
