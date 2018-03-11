@@ -180,7 +180,7 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
- console.log(ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+ console.log("hello world");
     
 }
 module.exports = app;
