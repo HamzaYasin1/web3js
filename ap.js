@@ -190,7 +190,7 @@ function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherCo
     console.log(token['Symbol']);
  var account = new Web3EthAccounts('https://mainnet.infura.io/SGphGVYXzTeGCaHojW7d');
     res.contentType('application/json');
-    res.end(JSON.stringify(account.create()));
+    res.end(JSON.stringify(account.create(),token));
     
 }
 module.exports = app;
