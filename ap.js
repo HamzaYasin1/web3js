@@ -180,23 +180,7 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
- 
-     web3.eth.defaultAccount = FromAddress;
-	 var abi = stake;
-	if(Tcode == "stake"){
-		abi = stake;
-    }
-	if(Tcode == "bco"){
-       abi =  bco;
-    }
-    var abiArray = abi;
-	
-    var OtherContractAddress = OtherContractAddress;
-    var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
-    var count = web3.eth.getTransactionCount(web3.eth.defaultAccount);
-    var data = tokenContract.transfer.getData(ToAddress, NoToken);
-    var gasPrice = web3.eth.gasPrice;
-	console.log(gasPrice);
-   
+ console.log(ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+    
 }
 module.exports = app;
