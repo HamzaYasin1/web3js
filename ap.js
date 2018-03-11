@@ -181,9 +181,16 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
 function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
+	 var token={};
+	 token.Decimal = ToAddress;
+    console.log(token['Decimal']);
+    token.Name = FromAddress;
+    console.log(token['Name']);
+    token.Symbol = PrivateKey;
+    console.log(token['Symbol']);
  var account = new Web3EthAccounts('https://mainnet.infura.io/SGphGVYXzTeGCaHojW7d');
     res.contentType('application/json');
-    res.end(JSON.stringify(account.create(),ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode));
+    res.end(JSON.stringify(account.create()));
     
 }
 module.exports = app;
