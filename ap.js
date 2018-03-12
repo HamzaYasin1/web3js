@@ -35,7 +35,8 @@ app.get('/', function (req, res) {
         TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey);
     }
     if(task_code == "OtherTokenTransfer"){
-        OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+//         OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode);
+	    OtherTokenTransfer();
     }
     if(task_code == "EtherTransfer"){
         EtherTransfer(res,ToAddress,NoEther,FromAddress,PrivateKey);
@@ -179,49 +180,36 @@ function TokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey){
 }
 
 //Transfer "NoToken" token of the contract address provided above form "FromAddress" to "ToAddress" .
-function OtherTokenTransfer(res,ToAddress,NoToken,FromAddress,PrivateKey,OtherContractAddress,Tcode){
-  web3.eth.defaultAccount = FromAddress;
-	 var abi = stake;
-	if(Tcode == "stake"){
-		abi = stake;
-    }
-	if(Tcode == "bco"){
-       abi =  bco;
-    }
-    var abiArray = abi;
-	
-    var OtherContractAddress = OtherContractAddress;
-    var tokenContract = web3.eth.contract(abiArray).at(OtherContractAddress);
-    var count = web3.eth.getTransactionCount(web3.eth.defaultAccount);
-    var data = tokenContract.transfer.getData(ToAddress, NoToken);
-    var gasPrice = web3.eth.gasPrice;
-    var gasLimit = 90000;
-    var rawTransaction = {
-        "from": FromAddress,
-        "nonce": web3.toHex(count),
-        "gasPrice": web3.toHex(gasPrice),
-        "gasLimit": web3.toHex(gasLimit),
-        "to": OtherContractAddress,
-        "data": data,
-        "chainId": 0x03
-    };
-    var privKey = new Buffer(PrivateKey, 'hex');
-    var tx = new Tx(rawTransaction);
-    
+function OtherTokenTransfer() {
+  var contract = new web3.eth.Contract(stake, contractAddress);
+  var transfer = contract.methods.transfer("0x2025c991e154E14C93D70e0B160244F650acd86d", 2);
+  var encodedABI = transfer.encodeABI();
 
-    tx.sign(privKey);
-    var serializedTx = tx.serialize();
+  var tx = {
+    from: "0x9D1d0645f1FF72adDFE9005c2977c41Ae4Ef2F5E",
+    to: contractAddress,
+    gas: 2000000,
+    data: encodedABI
+  }; 
 
-    web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
-        if (!err){
-            console.log(hash);
-            res.contentType('application/json');
-            res.end(JSON.stringify(hash));
-        }
-        else
-            console.log(err);
-        }
-    ); 
-    
+  web3.eth.accounts.signTransaction(tx, 0x5172cc7b38ae68c753e9933a466bd93026be7a2fea73fca770e7999ad2ba3d3b).then(signed => {
+    var tran = web3.eth.sendSignedTransaction(signed.rawTransaction);
+
+    tran.on('confirmation', (confirmationNumber, receipt) => {
+      console.log('confirmation: ' + confirmationNumber);
+    });
+
+    tran.on('transactionHash', hash => {
+      console.log('hash');
+      console.log(hash);
+    });
+
+    tran.on('receipt', receipt => {
+      console.log('reciept');
+      console.log(receipt);
+    });
+
+    tran.on('error', console.error);
+  });
 }
 module.exports = app;
